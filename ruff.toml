@@ -1,0 +1,10 @@
+# ruff (https://docs.astral.sh/ruff/) settings for the Python in tools/; run
+# `ruff check tools` or tools/lint/lint_all.py. A small rule set: pyflakes,
+# pycodestyle, bugbear, commented-out code (ERA) and pyupgrade.
+line-length = 100
+extend-exclude = ["build"]
+
+[lint]
+select = ["E", "F", "W", "B", "ERA", "UP"]
+# E501: long lines are left to review. UP031: printf-style formatting is fine.
+ignore = ["E501", "UP031"]

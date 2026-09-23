@@ -1,0 +1,121 @@
+// Cloudflare Workers configuration of the work server, as a template. Copy it to
+// wrangler.jsonc in this directory, which git ignores, and in the copy replace
+// REPLACE_WITH_YOUR_D1_ID with the id `npx wrangler d1 create collatz-frontier` prints
+// and REPLACE_WITH_YOUR_NAME with the name the status page shows;
+// scripts/windows/setup-server.ps1 makes the copy and sets both. Set the secrets once
+// with `npx wrangler secret put NAME`: RL_SECRET (requests fail until it is set),
+// WORKER_TOKEN (the token the owner's workers send) and optionally ADMIN_SECRET. A copy
+// does not follow later changes to this file; carry them over by hand. The server tests
+// run on this file. Everything here fits the Workers Free plan.
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "collatz-frontier",
+	"main": "src/index.ts",
+	"compatibility_date": "2026-04-01",
+	"workers_dev": true,
+	// public/ is served as static assets (free, not counted as requests);
+	// requests that match no file, i.e. /api/*, run the Worker.
+	"assets": {
+		"directory": "./public"
+	},
+	"d1_databases": [
+		{
+			"binding": "DB",
+			"database_name": "collatz-frontier",
+			"database_id": "REPLACE_WITH_YOUR_D1_ID",
+			"migrations_dir": "migrations"
+		}
+	],
+	// Per-IP and per-machine request limits per 60 s. A worker needs about two
+	// requests (fetch, submit) per unit; 12 per machine leaves room for retries.
+	// If a deploy rejects this block, delete it: the server then counts requests
+	// in D1 (RL_*_PER_MIN).
+	"ratelimits": [
+		{
+			"name": "RL_IP",
+			"namespace_id": "41001",
+			"simple": {
+				"limit": 120,
+				"period": 60
+			}
+		},
+		{
+			"name": "RL_USER",
+			"namespace_id": "41002",
+			"simple": {
+				"limit": 12,
+				"period": 60
+			}
+		}
+	],
+	"vars": {
+		// Live leases per machine.
+		"MAX_LEASES_PER_USER": "4",
+		"MAX_BODY_BYTES": "32768",
+		// /api/submit only (default 262144): a result lists every record of its block.
+		"MAX_SUBMIT_BYTES": "262144",
+		// Seconds /api/stats is cached (per isolate, and in the Cache API on a custom domain).
+		"STATS_CACHE_SECONDS": "60",
+		"RL_IP_PER_MIN": "120",
+		"RL_USER_PER_MIN": "12",
+		// The name the status page shows for the owner.
+		"OWNER_NAME": "REPLACE_WITH_YOUR_NAME",
+		// Seconds after acceptance within which a unit's re-check must be submitted;
+		// a re-check lease is offered only if it ends by then.
+		"EMBARGO_SECONDS": "604800",
+		// A waiting re-check (campaign recheck_rate) goes out after this many regular
+		// results of the owner's machines since the last re-check lease, once it has
+		// waited RECHECK_MAX_WAIT_SECONDS, or when there is no regular work.
+		"RECHECK_EVERY": "20",
+		"RECHECK_MAX_WAIT_SECONDS": "86400"
+	},
+	"env": {
+		// `npm test` and the CTest worker test run `wrangler dev --env test` on this
+		// file, against a throwaway local database. Never deployed.
+		"test": {
+			"d1_databases": [
+				{
+					"binding": "DB",
+					"database_name": "collatz-frontier-test",
+					"database_id": "00000000-0000-4000-8000-000000000000",
+					"migrations_dir": "migrations"
+				}
+			],
+			"ratelimits": [
+				{
+					"name": "RL_IP",
+					"namespace_id": "41101",
+					"simple": {
+						"limit": 40,
+						"period": 10
+					}
+				},
+				{
+					"name": "RL_USER",
+					"namespace_id": "41102",
+					"simple": {
+						"limit": 40,
+						"period": 10
+					}
+				}
+			],
+			"vars": {
+				"MAX_LEASES_PER_USER": "4",
+				"MAX_BODY_BYTES": "32768",
+				// A test turns the stats cache on per request (X-Test-Stats-Cache-Seconds).
+				"STATS_CACHE_SECONDS": "0",
+				"RL_IP_PER_MIN": "20",
+				"RL_USER_PER_MIN": "1000",
+				// A fixed key for the throwaway test database only.
+				"RL_SECRET": "test-only-rate-limit-key-0123456789",
+				// No embargo, so no re-check is ever offered, unless a test overrides it
+				// with `wrangler dev --var` (test/helpers.mjs startServer({vars})).
+				"EMBARGO_SECONDS": "0",
+				"RECHECK_EVERY": "20",
+				"RECHECK_MAX_WAIT_SECONDS": "86400",
+				"ADMIN_SECRET": "test-only-admin-secret-0123456789",
+				"TEST_MODE": "1"
+			}
+		}
+	}
+}

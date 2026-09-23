@@ -1,0 +1,17 @@
+node_modules/
+.wrangler/
+# Local test state (wrangler dev --persist-to) and generated campaign SQL.
+.test-state/
+campaign.sql
+# Local secrets for `npm run dev` (RL_SECRET=...), never committed.
+.dev.vars
+.setup-state.json
+add-commit.sql
+.migrate-progress.json
+campaign-update.sql
+# Backups that scripts/prune.mjs writes before it prunes.
+backup-*.sql
+# The live settings: a copy of wrangler.example.jsonc with the owner's database id and
+# name, and the setup's backup of it.
+/wrangler.jsonc
+wrangler.jsonc.bak

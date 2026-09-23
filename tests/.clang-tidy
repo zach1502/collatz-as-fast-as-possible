@@ -1,0 +1,6 @@
+# The repository .clang-tidy, minus one check for the tests: doctest's
+# REQUIRE(x.has_value()) ends the test case by throwing, which
+# bugprone-unchecked-optional-access does not model, so it reports every *x
+# that follows one.
+InheritParentConfig: true
+Checks: -bugprone-unchecked-optional-access

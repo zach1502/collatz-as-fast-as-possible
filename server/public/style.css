@@ -1,0 +1,76 @@
+/* One column of text and tables, in the browser's serif font and link colors. */
+:root {
+  color-scheme: light dark;
+  --fg: #111111;
+  --bg: #ffffff;
+  --muted: #595959;
+  --rule: #bdbdbd;
+  --bar: #595959;
+  --warn: #b3261e;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --fg: #e2e2e2;
+    --bg: #151515;
+    --muted: #a0a0a0;
+    --rule: #4d4d4d;
+    --bar: #a0a0a0;
+    --warn: #ff8a80;
+  }
+}
+body {
+  margin: 0;
+  padding: 0.75rem 1.25rem 2rem;
+  max-width: 42rem;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: serif;
+  font-size: 1.0625rem;
+  line-height: 1.45;
+}
+h1 { font-size: 1.6rem; margin: 0.6rem 0 0.2rem; }
+h2 { font-size: 1.2rem; margin: 1.8rem 0 0.5rem; }
+p { margin: 0.5rem 0; }
+.lead { font-size: 1.25rem; margin-top: 1.2rem; }
+.quiet, .scale, .axis, footer { color: var(--muted); }
+.warn { color: var(--warn); }
+sup { line-height: 0; }
+/* A number that fits on a line moves to the next one whole; a longer one
+   wraps between digit groups. */
+.digits { display: inline-block; }
+.digits .g { margin-left: 0.2em; }
+code { font-family: ui-monospace, Consolas, monospace; font-size: 0.9em; }
+
+table { border-collapse: collapse; }
+th, td { border: 1px solid var(--rule); padding: 0.15rem 0.5rem; text-align: left; vertical-align: baseline; }
+td, tbody th { white-space: nowrap; }
+/* A cell with a long number in it wraps between its digit groups. */
+td.wrap { white-space: normal; }
+tbody th { font-weight: normal; }
+.num { text-align: right; font-variant-numeric: tabular-nums; }
+/* A table wider than a phone scrolls inside this box, not the page. */
+.wide { overflow-x: auto; }
+/* The path records may be wider than the text, up to the window. Each number
+   stays on one line (Chrome breaks at a <wbr> even under nowrap), so on a
+   narrower window the table scrolls; "Found by" wraps, but not below 14em. */
+#path-records .wide { width: max-content; max-width: max(100%, calc(100vw - 2.5rem)); }
+#path-records wbr { display: none; }
+#path-records td.wrap { min-width: 14em; }
+
+figure { margin: 0.6rem 0 1.4rem; }
+.chart svg { display: block; width: 100%; height: 6rem; border-top: 1px dotted var(--rule); border-bottom: 1px solid var(--fg); }
+.chart rect { fill: var(--bar); }
+.scale, .axis { font-size: 0.85rem; }
+.axis { display: flex; justify-content: space-between; gap: 1rem; }
+details { margin-top: 0.4rem; }
+summary { cursor: pointer; }
+dd { margin: 0 0 0.3rem 1.5rem; }
+
+footer { margin-top: 2.5rem; font-size: 0.9rem; }
+
+@media (max-width: 30rem) {
+  body { padding: 0.5rem 0.9rem 1.5rem; }
+  .lead { font-size: 1.15rem; }
+  th, td { padding: 0.15rem 0.35rem; }
+  tbody th { white-space: normal; }
+}

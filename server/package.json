@@ -1,0 +1,25 @@
+{
+  "name": "collatz-work-server",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Work-unit server for distributed collatz frontier verification (Cloudflare Workers + D1)",
+  "license": "MIT",
+  "type": "module",
+  "engines": {
+    "node": ">=20.3.0"
+  },
+  "scripts": {
+    "lint": "eslint . --max-warnings 0",
+    "test": "node scripts/build-migrations.mjs --check && tsc --noEmit && npm run lint && node --test test/*.test.mjs",
+    "dev": "wrangler dev --local",
+    "campaign": "node scripts/campaign.mjs"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "4.20260426.1",
+    "@eslint/js": "10.0.1",
+    "eslint": "10.12.0",
+    "typescript": "5.9.3",
+    "typescript-eslint": "8.71.1",
+    "wrangler": "4.86.0"
+  }
+}

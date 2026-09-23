@@ -1,0 +1,49 @@
+{
+  "schema": "collatz-verify-json/1",
+  "commit": "b49c578f5391efff02cb95ce054ff6b12a8a406a-dirty",
+  "machine": {"host": "", "hardware_concurrency": 10},
+  "backend": "cpu",
+  "block": {"h": "63826575556", "K": 32, "L": "274133054628693016576", "end": "274133054632987983872"},
+  "params": {
+    "N": 32, "A": 10, "B": 24, "bitvectors": 8, "threads": 4,
+    "kernel": "table16", "mod3t": 6, "partial_oee": true, "gpu": false,
+    "block_h": "63826575556", "window_chains": 6, "window_templates_D": 12,
+    "assumes_below": "274133054628693016576", "assumption_source": "Barina 2025, all n < 2^71 (doi 10.1007/s11227-025-07337-0)",
+    "record_threshold": "79228162514264337593543950336",
+    "window_landing": false,
+    "unwalked_depth": 46,
+    "case_c": 0, "case_k": 1
+  },
+  "result": {
+    "candidates_checked": 5428404,
+    "step2_masked_out": 52403020,
+    "step3_steps_total": 18351879,
+    "coverage_checksum": 2245065462234255801,
+    "pow_checksum": 178643202585091449,
+    "pow_available": true,
+    "pow_kernel_id": 16,
+    "blocks_total": 18351879,
+    "max_excursion": "56649062372194325899121269007146717645316",
+    "max_excursion_n": "274133054632352106267",
+    "max_exceeds_u128": true,
+    "max_exact": true,
+    "records": [["274133054628829518847", "95892241681984984215957932714"], ["274133054632352106267", "56649062372194325899121269007146717645316"], ["274133054632616937711", "103797630865836732741545392298"]],
+    "records_truncated": false,
+    "overflow_fallbacks": 1,
+    "prefix_walks": 1,
+    "step1_survivors": 56476,
+    "seconds_step1_2": 0.111331,
+    "seconds_filter": 0.003036,
+    "bv_cache_hit": true,
+    "seconds_total": 0.111665,
+    "result_digest_schema": "collatz-result-digest/2",
+    "result_digest": "465b308e83af60af0bac04372981a320ccaafe313ea6b5694c5d6dfd20d8c6dd"
+  },
+  "preflight": {
+    "candidates": 0,
+    "coverage_checksum": 0,
+    "pow_checksum": 0,
+    "blocks_total": 0,
+    "step3_steps_total": 0
+  }
+}

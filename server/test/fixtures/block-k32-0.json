@@ -1,0 +1,49 @@
+{
+  "schema": "collatz-verify-json/1",
+  "commit": "b49c578f5391efff02cb95ce054ff6b12a8a406a-dirty",
+  "machine": {"host": "", "hardware_concurrency": 10},
+  "backend": "cpu",
+  "block": {"h": "557003571200", "K": 32, "L": "2392312122059207475200", "end": "2392312122063502442496"},
+  "params": {
+    "N": 32, "A": 10, "B": 24, "bitvectors": 8, "threads": 4,
+    "kernel": "table16", "mod3t": 6, "partial_oee": true, "gpu": false,
+    "block_h": "557003571200", "window_chains": 6, "window_templates_D": 12,
+    "assumes_below": "2392312122059207475200", "assumption_source": "prior blocks of this project",
+    "record_threshold": "494114680693632162318569565806744468898092",
+    "window_landing": false,
+    "unwalked_depth": 46,
+    "case_c": 0, "case_k": 1
+  },
+  "result": {
+    "candidates_checked": 5428728,
+    "step2_masked_out": 52402696,
+    "step3_steps_total": 18358561,
+    "coverage_checksum": 2031426995435106819,
+    "pow_checksum": 1075943365887697527,
+    "pow_available": true,
+    "pow_kernel_id": 16,
+    "blocks_total": 18358561,
+    "max_excursion": "28006512439271396991323566377842",
+    "max_excursion_n": "2392312122063371356399",
+    "max_exceeds_u128": false,
+    "max_exact": true,
+    "records": [],
+    "records_truncated": false,
+    "overflow_fallbacks": 0,
+    "prefix_walks": 3,
+    "step1_survivors": 56476,
+    "seconds_step1_2": 0.142570,
+    "seconds_filter": 0.034950,
+    "bv_cache_hit": true,
+    "seconds_total": 0.142997,
+    "result_digest_schema": "collatz-result-digest/2",
+    "result_digest": "f699b5fd2dd9d98a816aa58da0d5fd10ddc19070784cb255e541fccda270618f"
+  },
+  "preflight": {
+    "candidates": 0,
+    "coverage_checksum": 0,
+    "pow_checksum": 0,
+    "blocks_total": 0,
+    "step3_steps_total": 0
+  }
+}

@@ -1,0 +1,4 @@
+# run with tools/lint/run_shellcheck.sh.
+shell=bash
+external-sources=true
+enable=check-unassigned-uppercase,avoid-nullary-conditions,deprecate-which,check-set-e-suppressed

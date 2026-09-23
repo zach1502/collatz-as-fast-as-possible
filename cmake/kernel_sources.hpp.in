@@ -1,0 +1,36 @@
+// GENERATED FILE -- do not edit. Produced at CMake configure time from
+// include/collatz/gpu/u128_limbs.h and src/gpu/kernels/*.cl (see the top-level
+// CMakeLists.txt "OpenCL GPU backend" section), with the part files they
+// include expanded in place. Edit the sources, not this.
+//
+// Each source is embedded as several <= 16 KiB raw-string pieces joined with
+// operator+ at static-init time, so no single string literal approaches the
+// 65536-byte -Woverlength-strings limit; the joined value is byte-identical to
+// the expanded source (test_integration_kernel_embed asserts this).
+#ifndef COLLATZ_GPU_KERNEL_SOURCES_HPP
+#define COLLATZ_GPU_KERNEL_SOURCES_HPP
+
+#include <string>
+
+namespace collatz::gpu::kernels {
+
+// The shared 128-bit limb header, compiled as OpenCL C.
+inline const std::string u128_limbs_h =
+    @COLLATZ_KERNEL_U128_LIMBS_EXPR@;
+
+// The survivor_tail16 kernel body (expects u128_limbs_h prepended). One
+// work-item per Step-1 survivor: Step 2 mask + Step 3 tail + folds on-device.
+inline const std::string survivor_tail16_cl =
+    @COLLATZ_KERNEL_SURVIVOR_TAIL16_EXPR@;
+
+// The candidate-per-item kernels (expects u128_limbs_h prepended).
+// cpi_mask_scatter_coalesced_wgscan fuses the Step-2 mask reconstruction and
+// the candidate scatter into one launch (one work-group per survivor, one
+// atomic per group); tail_persistent walks the candidates with persistent
+// lanes, per-work-group local reductions and a flagged-candidate list.
+inline const std::string survivor_cpi_cl =
+    @COLLATZ_KERNEL_SURVIVOR_CPI_EXPR@;
+
+} // namespace collatz::gpu::kernels
+
+#endif // COLLATZ_GPU_KERNEL_SOURCES_HPP

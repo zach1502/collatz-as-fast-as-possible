@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Collatz verifier</title>
+<link rel="stylesheet" href="/style.css">
+<script src="/format.js" defer></script>
+<script src="/app.js" defer></script>
+</head>
+<body>
+<header>
+<h1>Collatz</h1>
+<p id="by">A Collatz conjecture verifier, checking numbers as fast as it can.</p>
+</header>
+
+<main>
+<p id="frontier" class="lead"></p>
+<p id="start" hidden>Every number below <span id="start-value"></span> had already been checked<span id="start-credit" hidden> by <a id="start-credit-link"></a>'s project</span>. This verifier continues from there.</p>
+<p id="checked"></p>
+<p id="status" class="quiet"></p>
+<p id="audits" class="quiet" hidden></p>
+<noscript><p>The numbers on this page need JavaScript. They are also at <a href="/api/stats">/api/stats</a>.</p></noscript>
+
+<div id="data" hidden>
+<section>
+<h2 id="speed-h">Speed</h2>
+<div class="wide" role="region" aria-labelledby="speed-h" tabindex="0">
+<table id="speed" aria-labelledby="speed-h">
+<thead><tr><td></td><th scope="col" class="num">Numbers per second</th><th scope="col" class="num">Numbers per day</th></tr></thead>
+<tbody></tbody>
+</table>
+</div>
+</section>
+
+<section>
+<h2 id="eta-h">Milestones</h2>
+<div class="wide" role="region" aria-labelledby="eta-h" tabindex="0">
+<table id="eta" aria-labelledby="eta-h">
+<thead><tr><td></td><th scope="col" class="num">At this speed</th><th scope="col">Date (UTC)</th></tr></thead>
+<tbody></tbody>
+</table>
+</div>
+</section>
+
+<section>
+<h2>History</h2>
+<figure>
+<figcaption id="hourly-h">Numbers per second, by hour, last 48 hours (UTC)</figcaption>
+<div id="hourly-chart" class="chart"></div>
+<details>
+<summary>Table</summary>
+<div class="wide" role="region" aria-labelledby="hourly-h" tabindex="0">
+<table id="hourly-table" aria-labelledby="hourly-h">
+<thead><tr><th scope="col">Hour (UTC)</th><th scope="col" class="num">Numbers</th><th scope="col" class="num">Numbers per second</th></tr></thead>
+<tbody></tbody>
+</table>
+</div>
+</details>
+</figure>
+<figure>
+<figcaption id="daily-h">Numbers per second, by day, last 90 days (UTC)</figcaption>
+<div id="daily-chart" class="chart"></div>
+<details>
+<summary>Table</summary>
+<div class="wide" role="region" aria-labelledby="daily-h" tabindex="0">
+<table id="daily-table" aria-labelledby="daily-h">
+<thead><tr><th scope="col">Day (UTC)</th><th scope="col" class="num">Numbers</th><th scope="col" class="num">Numbers per second</th></tr></thead>
+<tbody></tbody>
+</table>
+</div>
+</details>
+</figure>
+</section>
+
+<section id="machines">
+<h2 id="hosts-h">Machines</h2>
+<div class="wide" role="region" aria-labelledby="hosts-h" tabindex="0">
+<table id="hosts" aria-labelledby="hosts-h">
+<thead><tr><th scope="col">Machine</th><th scope="col" class="num">Numbers</th><th scope="col" class="num">Numbers per second</th><th scope="col">Last seen (UTC)</th></tr></thead>
+<tbody></tbody>
+</table>
+</div>
+</section>
+
+<section>
+<h2 id="blocks-h">Recent blocks</h2>
+<div class="wide" role="region" aria-labelledby="blocks-h" tabindex="0">
+<table id="blocks" aria-labelledby="blocks-h">
+<thead><tr><th scope="col">Time (UTC)</th><th scope="col" class="num">Size</th><th scope="col" class="num">Seconds</th><th scope="col" class="num">Numbers per second</th></tr></thead>
+<tbody></tbody>
+</table>
+</div>
+</section>
+
+<section>
+<h2>Largest peak</h2>
+<dl id="peak">
+<dt>Peak</dt>
+<dd id="peak-value"></dd>
+<dt>Starting number</dt>
+<dd id="peak-n"></dd>
+</dl>
+<p id="no-peak" hidden>None yet.</p>
+</section>
+
+<section id="path-records" hidden>
+<h2 id="path-records-h">Path records</h2>
+<div class="wide" role="region" aria-labelledby="path-records-h" tabindex="0">
+<table id="path-records-table" aria-labelledby="path-records-h">
+<thead><tr><th scope="col" class="num">#</th><th scope="col" class="num">Starting number</th><th scope="col" class="num">Peak</th><th scope="col">Found by</th></tr></thead>
+<tbody></tbody>
+</table>
+</div>
+<details id="path-records-all">
+<summary id="path-records-all-h">All <span id="path-records-all-n">97</span> records</summary>
+<div class="wide" role="region" aria-labelledby="path-records-all-h" tabindex="0">
+<table id="path-records-all-table" aria-labelledby="path-records-all-h">
+<thead><tr><th scope="col" class="num">#</th><th scope="col" class="num">Starting number</th><th scope="col" class="num">Peak</th><th scope="col">Found by</th></tr></thead>
+<tbody></tbody>
+</table>
+</div>
+</details>
+</section>
+</div>
+</main>
+
+<footer>
+<p>Data: <a href="/api/stats">/api/stats</a></p>
+<p id="ledger" hidden>Ledger: <span id="ledger-entries"></span><span id="ledger-latest"></span> (<a href="/api/ledger.csv">CSV</a>, <a href="/api/ledger">JSON</a>)</p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,18 @@
+# Build output
+build/
+# Caches
+.cache/
+*.o
+*.obj
+compile_commands.json
+
+# Editor / OS cruft
+*.swp
+__pycache__/
+.yolo-sisyphus/
+
+# My KEYS
+/server/wrangler.jsonc
+
+# local scratch output
+c40.*

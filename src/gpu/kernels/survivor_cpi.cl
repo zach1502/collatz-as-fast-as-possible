@@ -1,0 +1,6 @@
+#include "survivor_cpi/survivor_cpi_01_options.cl"
+#include "survivor_cpi/survivor_cpi_02_mask_wgscan.cl"
+#include "survivor_cpi/survivor_cpi_03_tail_persistent_head.cl"
+#include "survivor_cpi/survivor_cpi_04_tail_persistent_slot_macros.cl"
+#include "survivor_cpi/survivor_cpi_05_tail_persistent_loops.cl"
+#include "survivor_cpi/survivor_cpi_06_tail_persistent_reduce.cl"

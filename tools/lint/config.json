@@ -1,0 +1,100 @@
+{
+ "enforce": true,
+ "exclude": [
+  "package-lock.json"
+ ],
+ "rules": {
+  "non-ascii": {
+   "severity": "error",
+   "types": ["*"],
+   "allow": ["README.md"]
+  },
+  "experiment-ref": {
+   "severity": "error",
+   "types": ["*"],
+   "allow": ["ruff.toml", "tools/lint/check_style_lib/", "tools/lint/test_check_style*.py"]
+  },
+  "experiment-ref-code": {
+   "severity": "error",
+   "types": ["*"],
+   "allow": ["ruff.toml", "tools/lint/check_style_lib/", "tools/lint/test_check_style*.py"]
+  },
+  "experiment-verdict": {
+   "severity": "error",
+   "types": ["*"],
+   "allow": ["tools/lint/check_style_lib/", "tools/lint/test_check_style*.py"]
+  },
+  "experiment-identifier": {
+   "severity": "error",
+   "types": ["c", "ts", "py", "sh", "ps1", "cmake", "toml", "sql"],
+   "allow": ["tools/lint/check_style_lib/", "tools/lint/test_check_style*.py"]
+  },
+  "experiment-filename": {
+   "severity": "error",
+   "types": ["*"],
+   "allow": []
+  },
+  "banner": {
+   "severity": "error",
+   "types": ["c", "ts", "css", "html", "py", "sh", "ps1", "cmake", "toml", "sql"],
+   "allow": ["tools/lint/test_check_style*.py"]
+  },
+  "emphasis": {
+   "severity": "error",
+   "types": ["c", "ts", "css", "html", "py", "sh", "ps1", "cmake", "toml", "sql"],
+   "allow": ["tools/lint/check_style_lib/", "tools/lint/test_check_style*.py"]
+  },
+  "ai-vocabulary": {
+   "severity": "error",
+   "types": ["c", "ts", "css", "html", "py", "sh", "ps1", "cmake", "toml", "sql"],
+   "allow": ["tools/lint/check_style_lib/", "tools/lint/test_check_style*.py"]
+  },
+  "restating-comment": {
+   "severity": "error",
+   "types": ["c", "ts", "py", "sh", "ps1", "cmake"],
+   "allow": ["tools/lint/test_check_style*.py"]
+  },
+  "trivial-doc": {
+   "severity": "error",
+   "types": ["c", "ts", "py"],
+   "allow": ["tools/lint/test_check_style*.py"]
+  },
+  "commented-out-code": {
+   "severity": "error",
+   "types": ["c", "ts", "py", "sh", "ps1", "cmake", "sql"],
+   "allow": ["tools/lint/test_check_style*.py"]
+  },
+  "todo-owner": {
+   "severity": "error",
+   "types": ["c", "ts", "css", "html", "py", "sh", "ps1", "cmake", "toml", "sql"],
+   "allow": ["tools/lint/check_style_lib/", "tools/lint/test_check_style*.py"]
+  },
+  "placeholder": {
+   "severity": "error",
+   "types": ["*"],
+   "allow": ["tools/lint/check_style_lib/", "tools/lint/test_check_style*.py"]
+  },
+  "trailing-whitespace": {
+   "severity": "error",
+   "types": ["*"],
+   "allow": []
+  },
+  "tab": {
+   "severity": "error",
+   "types": ["c", "ts"],
+   "allow": ["server/wrangler.jsonc", "server/wrangler.example.jsonc"]
+  },
+  "final-newline": {
+   "severity": "error",
+   "types": ["*"],
+   "allow": []
+  },
+  "file-length": {
+   "severity": "error",
+   "types": ["c", "ts", "py", "sh", "ps1", "cmake", "cmd"],
+   "max": 300,
+   "allow": ["package-lock.json", "*.json", "*.jsonc", "*.csv", "*.map", "**/fixtures/**", "*.md", "LICENSE",
+             "server/migrations/"]
+  }
+ }
+}
